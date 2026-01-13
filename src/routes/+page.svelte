@@ -87,18 +87,44 @@
 	</div>
 </div>
 
-<div class="mt-8 w-full">
+<div class="mt-8 mr-8 ml-8 rounded-t-2xl bg-[#8D99AE] inset-shadow-lg">
 	<div
-		class="relative mr-8 ml-8 flex flex-row justify-evenly rounded-t-2xl bg-[#8D99AE] p-8 text-black inset-shadow-lg"
+		class="relative m-auto flex max-w-250 flex-col justify-between gap-8 p-8 text-black md:flex-row md:gap-0"
 	>
-		<h1 class="poller text-3xl font-bold">Links</h1>
-		<a href="https://hackclub.com/" class="font-[Pangolin] underline">Hack Club</a>
-		<a href="https://auth.hackclub.com/slack" class="font-[Pangolin] underline">Hack Club Slack</a>
-		<a
-			href="https://hackclub.enterprise.slack.com/archives/C09A37XECJV"
-			class="font-[Pangolin] underline"
-		>
-			#shrine Channel
-		</a>
+		<div class="flex flex-col">
+			<h1 class="poller mb-4 text-3xl font-bold">Links</h1>
+			<a href="https://hackclub.com/" class="font-[Pangolin] underline">Hack Club</a>
+			<a href="https://auth.hackclub.com/slack" class="font-[Pangolin] underline">Hack Club Slack</a
+			>
+			<a
+				href="https://hackclub.enterprise.slack.com/archives/C09A37XECJV"
+				class="font-[Pangolin] underline"
+			>
+				#shrine Channel
+			</a>
+		</div>
+		<div class="flex flex-col">
+			<h1 class="poller mb-4 text-3xl font-bold">Organizers</h1>
+			<a
+				href="https://app.slack.com/client/E09V59WQY1E/D0A7TQRKCBH"
+				class="font-[Pangolin] underline">@Alexander</a
+			>
+			<a
+				href="https://app.slack.com/client/E09V59WQY1E/D079516CS2J"
+				class="font-[Pangolin] underline">@Valerie</a
+			>
+			<a
+				href="https://app.slack.com/client/E09V59WQY1E/D0A96GYCKCY"
+				class="font-[Pangolin] underline">@Nirvaan</a
+			>
+		</div>
+		<div class="flex flex-col">
+			<h1 class="poller mb-4 text-3xl font-bold">Website</h1>
+			<a href="https://github.com/Shuflduf/Shrine-Site" class="font-[Pangolin] underline">Github</a>
+			<a
+				href="https://app.slack.com/client/E09V59WQY1E/D078X2VP0NT"
+				class="font-[Pangolin] underline">Made by @Michael</a
+			>
+		</div>
 	</div>
 </div>
