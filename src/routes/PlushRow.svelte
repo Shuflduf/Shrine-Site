@@ -73,11 +73,13 @@
 
 <div class="relative flex flex-row">
 	{#each activePlushies as plushI, i}
-		<img
-			src={`plushies/${PLUSHIES[plushI]}`}
-			style={`left: ${position - i * PLUSHIE_SIZE}px; width: ${PLUSHIE_SIZE}px`}
-			class="absolute"
-			alt={PLUSHIES[plushI]}
-		/>
+		{#if position - i * PLUSHIE_SIZE < window.innerWidth}
+			<img
+				src={`plushies/${PLUSHIES[plushI]}`}
+				style={`left: ${position - (i + 1) * PLUSHIE_SIZE}px; width: ${PLUSHIE_SIZE}px`}
+				class="absolute"
+				alt={PLUSHIES[plushI]}
+			/>
+		{/if}
 	{/each}
 </div>
