@@ -6,7 +6,12 @@
 
 	const PLUSHIE_SIZE: number = 128;
 	let plushieBag: number[] = [];
-	let activePlushies: number[] = $state([]);
+	type PlushieRowItem = {
+		id: string;
+		plushIndex: number;
+	};
+	let activePlushies: PlushieRowItem[] = $state([]);
+	let removedPlushies: number = $state(0);
 	let position: number = $state(0.0);
 	let currentPlushieIndex: number = 0;
 
@@ -19,14 +24,16 @@
 	function update(currentTime: number) {
 		position = currentTime / 10.0;
 
-		// const firstPlushPos = position;
-		// if (activePlushies.length > 0 && firstPlushPos > window.innerWidth + PLUSHIE_SIZE) {
-		// 	activePlushies.shift();
-		// }
+		const firstPlushPos = position - (removedPlushies + 1) * PLUSHIE_SIZE;
 
-		const lastPlushPos = position - (activePlushies.length - 1) * PLUSHIE_SIZE;
+		if (activePlushies.length > 0 && firstPlushPos > window.innerWidth + PLUSHIE_SIZE) {
+			activePlushies.shift();
+			removedPlushies += 1;
+		}
+
+		const lastPlushPos = position - (activePlushies.length + removedPlushies - 1) * PLUSHIE_SIZE;
 		if (lastPlushPos > PLUSHIE_SIZE) {
-			activePlushies.push(plushieBag[currentPlushieIndex]);
+			activePlushies.push({ id: crypto.randomUUID(), plushIndex: plushieBag[currentPlushieIndex] });
 			currentPlushieIndex += 1;
 			currentPlushieIndex %= PLUSHIES.length;
 		}
@@ -43,21 +50,19 @@
 	}
 </script>
 
-<div class="relative flex h-full flex-row overflow-hidden">
-	{#each activePlushies as plushI, i}
-		{#if position - i * PLUSHIE_SIZE - PLUSHIE_SIZE < window.innerWidth}
-			<button
-				tabindex="-1"
-				onclick={() => blorbed(plushI)}
-				style={`left: ${position - (i + 1) * PLUSHIE_SIZE}px; width: ${PLUSHIE_SIZE}px`}
-				class="absolute cursor-pointer transition hover:scale-110"
-			>
-				<img
-					src={`plushies/${PLUSHIES[plushI]}`}
-					alt={PLUSHIES[plushI]}
-					style={`width: ${PLUSHIE_SIZE}px`}
-				/>
-			</button>
-		{/if}
+<div class="relative flex h-full flex-row">
+	{#each activePlushies as item, i (item.id)}
+		<button
+			tabindex="-1"
+			onclick={() => blorbed(item.plushIndex)}
+			style={`left: ${position - (i + removedPlushies + 1) * PLUSHIE_SIZE}px; width: ${PLUSHIE_SIZE}px`}
+			class="absolute cursor-pointer overflow-visible transition hover:scale-110"
+		>
+			<img
+				src={`plushies/${PLUSHIES[item.plushIndex]}`}
+				alt={PLUSHIES[item.plushIndex]}
+				style={`width: ${PLUSHIE_SIZE}px;`}
+			/>
+		</button>
 	{/each}
 </div>
