@@ -10,7 +10,7 @@
 	}
 </script>
 
-<div class="mb-8 w-full">
+<div class="w-full">
 	<div
 		class="relative mr-8 ml-8 h-128 overflow-hidden rounded-b-2xl bg-[#F8F32B] p-8 inset-shadow-lg md:h-164"
 	>
@@ -41,7 +41,7 @@
 	</div>
 </div>
 
-<div class="h-32">
+<div class="h-32 my-8 overflow-x-clip">
 	<PlushRow {blorbed} />
 </div>
 
